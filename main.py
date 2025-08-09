@@ -7,7 +7,6 @@ from src.ControlBall import Control, Ball
 
 pygame.init()
 pygame.display.set_caption("Bouncing Ball")
-bounce_sound = pygame.mixer.Sound("songgio.mp3")
 window = pygame.display.set_mode((Circle.WIDTH, Circle.HEIGHT))
 clock = pygame.time.Clock()
 running = True
@@ -33,8 +32,6 @@ while running:
             if Control.is_ball_in_arc(ball.ball_pos, Circle.circle_center, Arc.start_angle, Arc.end_angle):
                 ball.is_in = False
             if ball.is_in:
-                if not bounce_sound.get_num_channels():
-                    bounce_sound.play()
                 normal = (ball.ball_pos - Circle.circle_center) / dist
                 d = ball.ball_pos - Circle.circle_center
                 t = np.array([-d[1], d[0]], dtype = np.float64)
